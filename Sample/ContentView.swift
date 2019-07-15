@@ -65,7 +65,7 @@ struct ContentView : View {
                                                     }
                                                 }else if item == "%"{
                                                     self.display = String(Double(self.display)! * 0.01)
-                                                    self.calc.accum = self.display
+
                                                 }
                                         }
                                     }else if self.dataCalc.contains(item){
