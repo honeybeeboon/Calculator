@@ -51,13 +51,21 @@ struct ContentView : View {
                                             .tapAction {
                                                 if item == "AC"{
                                                     self.display = "0"
+                                                    self.calc.accum = ""
                                                     self.userIsInTheMiddleOfTyping = false
                                                 }else if item == "+/-"{
                                                     if self.display.prefix(1) == "-"{
                                                         self.display = String(self.display.suffix(self.display.count-1))
+                                                        
+                                                        print("-"+self.display)
                                                     }else{
                                                         self.display = "-" + self.display
+                                
+                                                        print("+"+self.display)
                                                     }
+                                                }else if item == "%"{
+                                                   self.display = String(Double(self.display)! * 0.01)
+                                                    self.calc.accum = self.display
                                                 }
                                         }
                                     }else if self.dataCalc.contains(item){
@@ -107,6 +115,7 @@ struct ContentView : View {
     }
     
     private func tapDigit(_ digit: String) {
+       
         if display.count != MAX_LENGTH{
             if userIsInTheMiddleOfTyping || digit == "."{
                 display += digit
@@ -130,6 +139,7 @@ struct ContentView : View {
         if let result = calc.result {
             display = String(result)
         }
+       
     }
 }
 

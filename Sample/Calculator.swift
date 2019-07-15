@@ -12,7 +12,6 @@ struct Calculator  {
     
     private var accumulator: String = ""
     private var resultDisplay : String = ""
-    
     mutating func performOperation(_ symbol: String) {
         if symbol != "="{
             var calc:String
@@ -33,8 +32,9 @@ struct Calculator  {
             } else {
                 resultDisplay = String(resultNum)
             }
-            print(resultDisplay)
-            accumulator = ""
+            print(accumulator)
+            
+            accumulator = resultDisplay
         }
 
     }
@@ -49,6 +49,15 @@ struct Calculator  {
     var result: String? {
         get {
             return resultDisplay
+        }
+    }
+    
+    var accum: String? {
+        get {
+            return accumulator
+        }
+        set {
+            accumulator = newValue!
         }
     }
   
