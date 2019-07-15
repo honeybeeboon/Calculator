@@ -15,6 +15,7 @@
 		D44C648722DB4C0A0010D083 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44C648522DB4C0A0010D083 /* LaunchScreen.storyboard */; };
 		D44C649222DB4C0A0010D083 /* SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44C649122DB4C0A0010D083 /* SampleTests.swift */; };
 		D44C649D22DB4C0A0010D083 /* SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44C649C22DB4C0A0010D083 /* SampleUITests.swift */; };
+		D4A812B722DC3CD10022D9AB /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A812B622DC3CD10022D9AB /* Calculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D44C649822DB4C0A0010D083 /* SampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44C649C22DB4C0A0010D083 /* SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUITests.swift; sourceTree = "<group>"; };
 		D44C649E22DB4C0A0010D083 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4A812B622DC3CD10022D9AB /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D44C647A22DB4C070010D083 /* AppDelegate.swift */,
 				D44C647C22DB4C070010D083 /* SceneDelegate.swift */,
 				D44C647E22DB4C070010D083 /* ContentView.swift */,
+				D4A812B622DC3CD10022D9AB /* Calculator.swift */,
 				D44C648022DB4C0A0010D083 /* Assets.xcassets */,
 				D44C648522DB4C0A0010D083 /* LaunchScreen.storyboard */,
 				D44C648822DB4C0A0010D083 /* Info.plist */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D44C647B22DB4C070010D083 /* AppDelegate.swift in Sources */,
+				D4A812B722DC3CD10022D9AB /* Calculator.swift in Sources */,
 				D44C647D22DB4C070010D083 /* SceneDelegate.swift in Sources */,
 				D44C647F22DB4C070010D083 /* ContentView.swift in Sources */,
 			);

@@ -13,14 +13,15 @@ struct ContentView : View {
     @State var showText = false
     let data = [["AC", "+/-", "%", "÷"],
                 ["7", "8", "9", "×"],
-                ["4", "5", "6", "ー"],
+                ["4", "5", "6", "-"],
                 ["1", "2", "3", "+"],
                 ["0", ".", "="]]
     let dataTop = ["AC", "+/-","%"]
-    let dataCalc = ["÷","×","ー","+","="]
+    let dataCalc = ["÷","×","-","+","="]
     let MAX_LENGTH = 9
     @State private var userIsInTheMiddleOfTyping = false
     @State private var display = "0"
+    @State private var calc = Calculator()
     var body: some View {
         let margin: CGFloat = 10
         return ZStack(alignment: .center){
@@ -66,6 +67,9 @@ struct ContentView : View {
                                             .fontWeight(.bold)
                                             .frame(width: 90.0, height: 90.0)
                                             .background(Color.orange,cornerRadius: Length(100))
+                                            .tapAction {
+                                                self.performOperation(item)
+                                        }
                                     }else if item == "0" {
                                         Text(item)
                                             .color(Color.white)
@@ -115,13 +119,27 @@ struct ContentView : View {
             }
         }
     }
-}
     
-    
-    #if DEBUG
-    struct ContentView_Previews : PreviewProvider {
-        static var previews: some View {
-            ContentView()
+    private func performOperation(_ symbol: String) {
+        print(#function)
+        if userIsInTheMiddleOfTyping {
+            calc.setOperand(display)
+            userIsInTheMiddleOfTyping = false
+        }
+        
+        calc.performOperation(symbol)
+        
+        if let result = calc.result {
+            display = String(result)
         }
     }
+}
+
+
+#if DEBUG
+struct ContentView_Previews : PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
 #endif
