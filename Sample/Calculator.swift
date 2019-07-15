@@ -11,7 +11,7 @@ import Foundation
 struct Calculator  {
     
     private var accumulator: String = ""
-    private var resultDisplay:Double = 0.0
+    private var resultDisplay : String = ""
     
     mutating func performOperation(_ symbol: String) {
         if symbol != "="{
@@ -25,9 +25,14 @@ struct Calculator  {
             }
             accumulator += calc
             print(accumulator)
-        } else {
+        } else if symbol == "=" && accumulator != nil{
             let expression = NSExpression(format: accumulator)
-            resultDisplay = expression.expressionValue(with: nil, context: nil) as! Double
+            let resultNum = expression.expressionValue(with: nil, context: nil) as! Double
+            if String(resultNum).hasSuffix(".0"){
+                resultDisplay = String(String(resultNum).prefix(String(resultNum).count-2))
+            } else {
+                resultDisplay = String(resultNum)
+            }
             print(resultDisplay)
             accumulator = ""
         }
@@ -36,14 +41,14 @@ struct Calculator  {
     
     mutating func setOperand(_ operand: String) {
         accumulator += String(Double(operand)!)
-        resultDisplay = Double(operand)!
-        print(accumulator)
+        resultDisplay = operand
+        print(resultDisplay)
     }
     
    
-    var result: Double? {
+    var result: String? {
         get {
-            return Double(resultDisplay)
+            return resultDisplay
         }
     }
   

@@ -108,9 +108,7 @@ struct ContentView : View {
     
     private func tapDigit(_ digit: String) {
         if display.count != MAX_LENGTH{
-            if userIsInTheMiddleOfTyping {
-                display += digit
-            } else if userIsInTheMiddleOfTyping || digit == "."{
+            if userIsInTheMiddleOfTyping || digit == "."{
                 display += digit
                 userIsInTheMiddleOfTyping = true
             }else {
