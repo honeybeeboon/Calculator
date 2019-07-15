@@ -18,6 +18,7 @@ struct ContentView : View {
                 ["0", ".", "="]]
     let dataTop = ["AC", "+/-","%"]
     let dataCalc = ["÷","×","ー","+","="]
+    let MAX_LENGTH = 9
     @State private var userIsInTheMiddleOfTyping = false
     @State private var display = "0"
     var body: some View {
@@ -31,7 +32,7 @@ struct ContentView : View {
                     
                     Text(display)
                         .foregroundColor(Color.white)
-                        .font(.custom("Roboto-Light",size: 80))
+                        .font(.custom("Roboto-Light",size: 75))
                         .frame(height: 50)
                     }
                     .padding(margin)
@@ -46,6 +47,18 @@ struct ContentView : View {
                                             .font(.largeTitle)
                                             .frame(width: 90.0, height: 90.0)
                                             .background(Color.gray,cornerRadius: Length(100))
+                                            .tapAction {
+                                                if item == "AC"{
+                                                    self.display = "0"
+                                                    self.userIsInTheMiddleOfTyping = false
+                                                }else if item == "+/-"{
+                                                    if self.display.prefix(1) == "-"{
+                                                        self.display = String(self.display.suffix(self.display.count-1))
+                                                    }else{
+                                                        self.display = "-" + self.display
+                                                    }
+                                                }
+                                        }
                                     }else if self.dataCalc.contains(item){
                                         Text(item)
                                             .color(Color.white)
@@ -60,14 +73,23 @@ struct ContentView : View {
                                             .fontWeight(.bold)
                                             .frame(width: 180.0, height: 90.0)
                                             .background(Color(red: 79/255, green: 79/255, blue: 79/255),cornerRadius: Length(100))
-                                        
-                                    }else {
+                                            .tapAction {
+                                                if self.display != "0"{
+                                                    self.tapDigit(item)
+                                                }else{
+                                                    self.display = "0"
+                                                }
+                                        }
+                                    }else{
                                         Text(item)
                                             .color(Color.white)
                                             .font(.largeTitle)
                                             .fontWeight(.bold)
                                             .frame(width: 90.0, height: 90.0)
                                             .background(Color(red: 79/255, green: 79/255, blue: 79/255),cornerRadius: Length(100))
+                                            .tapAction {
+                                                self.tapDigit(item)
+                                        }
                                     }
                                 }
                             }
@@ -79,13 +101,27 @@ struct ContentView : View {
             }
         }
     }
-}
-
-
-#if DEBUG
-struct ContentView_Previews : PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    private func tapDigit(_ digit: String) {
+        if display.count != MAX_LENGTH{
+            if userIsInTheMiddleOfTyping {
+                display += digit
+            } else if userIsInTheMiddleOfTyping || digit == "."{
+                display += digit
+                userIsInTheMiddleOfTyping = true
+            }else {
+                display = digit
+                userIsInTheMiddleOfTyping = true
+            }
+        }
     }
 }
+    
+    
+    #if DEBUG
+    struct ContentView_Previews : PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
+    }
 #endif
