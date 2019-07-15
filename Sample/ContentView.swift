@@ -60,11 +60,11 @@ struct ContentView : View {
                                                         print("-"+self.display)
                                                     }else{
                                                         self.display = "-" + self.display
-                                
+                                                        
                                                         print("+"+self.display)
                                                     }
                                                 }else if item == "%"{
-                                                   self.display = String(Double(self.display)! * 0.01)
+                                                    self.display = String(Double(self.display)! * 0.01)
                                                     self.calc.accum = self.display
                                                 }
                                         }
@@ -115,11 +115,18 @@ struct ContentView : View {
     }
     
     private func tapDigit(_ digit: String) {
-       
+        
         if display.count != MAX_LENGTH{
-            if userIsInTheMiddleOfTyping || digit == "."{
-                display += digit
-                userIsInTheMiddleOfTyping = true
+            if userIsInTheMiddleOfTyping {
+                if  digit == "." {
+                    if !display.contains("."){
+                        display += digit
+                        userIsInTheMiddleOfTyping = true
+                    }
+                } else {
+                    display += digit
+                    userIsInTheMiddleOfTyping = true
+                }
             }else {
                 display = digit
                 userIsInTheMiddleOfTyping = true
@@ -139,7 +146,7 @@ struct ContentView : View {
         if let result = calc.result {
             display = String(result)
         }
-       
+        
     }
 }
 
